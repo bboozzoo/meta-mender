@@ -36,7 +36,10 @@ do_compile() {
 
 do_install() {
   install -d ${D}/${bindir}
+  install -t ${D}/${bindir} -m 0755 \
+          ${B}/mender ${S}/support/mender-device-identity
   install -m 0755 ${B}/mender ${D}/${bindir}
+
   install -d ${D}/${systemd_unitdir}/system
   install -m 0644 ${WORKDIR}/mender.service ${D}/${systemd_unitdir}/system
 
